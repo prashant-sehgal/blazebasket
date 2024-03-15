@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Kanit', sans-serif;
+  font-weight: 300;
+  text-decoration: none;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.navigation .navbar {
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(to right, #0f2f58, #1f5eb1);
+  height: 60px;
+  padding: 10px;
+}
+
+.navbar .logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  flex: 0.1;
+  display: flex;
+  align-items: center;
+  color: whitesmoke;
+}
+
+.navbar img {
+  width: 50px;
+  margin-left: 10px;
+}
+
+.navbar .logo span {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  flex: 0.1;
+}
+
+.navbar .search-box {
+  display: flex;
+  justify-content: center;
+  flex: 0.9;
+}
+
+.navbar .search-box input {
+  width: 100%;
+  max-width: 600px;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.navbar .search-box button {
+  width: 100px;
+  border-radius: 0px 10px 10px 0px;
+  background-color: #ffac30;
+  transition: 0.1s;
+  border: none;
+}
+
+.navbar .search-box button:hover {
+  background-color: #da9125;
+}
+
+.navbar .search-box input:focus {
+  outline: none;
+}
+
+.navbar .navs {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.navs .navs-element {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: whitesmoke;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  border-bottom: 2px dashed transparent;
+  padding: 4px;
+  transition: 0.1s;
+  margin-right: 20px;
+  /* text-align: center; */
+}
+
+.navs .navs-element span {
+  font-size: 25px;
+}
+
+.navs .navs-element:hover {
+  border-color: whitesmoke;
+}
+
+.navs .cart {
+  width: 102px;
+}
+
+.navs .login {
+  background-color: white;
+  color: #0f2f58;
+  width: 100px;
+}
+
+.category-search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: linear-gradient(to right, #0f2f58, #1f5eb1);
+  padding: 10px;
+}
+
+.category-search-bar .category {
+  color: whitesmoke;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: bolder;
+  text-align: center;
+  opacity: 0.6;
+  transition: 0.1s;
+  border-bottom: 1px dashed transparent;
+}
+
+.category-search-bar .category:hover {
+  opacity: 1;
+  border-bottom-color: whitesmoke;
+}
+
+.category span {
+  font-size: 30px;
+}
