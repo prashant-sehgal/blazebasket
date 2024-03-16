@@ -20,12 +20,14 @@ function App() {
             <SearchBox />
             <Navs />
           </div>
-          <div className="category-search-bar">
-            <CategoryLinkElement title="smartphones" icon="smartphone" />
-            <CategoryLinkElement title="laptops" icon="laptop_mac" />
-            <CategoryLinkElement title="smartwatches" icon="watch" />
-            <CategoryLinkElement title="headphones" icon="headphones" />
-            <CategoryLinkElement title="speakers" icon="speaker" />
+          <div className="categories-container">
+            <div className="categories">
+              <CategoryLinkElement title="smartphones" icon="smartphone" />
+              <CategoryLinkElement title="laptops" icon="laptop_mac" />
+              <CategoryLinkElement title="smartwatches" icon="watch" />
+              <CategoryLinkElement title="headphones" icon="headphones" />
+              <CategoryLinkElement title="speakers" icon="speaker" />
+            </div>
           </div>
         </div>
         <Routes>

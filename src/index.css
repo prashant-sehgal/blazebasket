@@ -23,27 +23,6 @@
   padding: 10px;
 }
 
-.navbar .logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 40px;
-  font-weight: 500;
-  flex: 0.1;
-  display: flex;
-  align-items: center;
-  color: whitesmoke;
-}
-
-.navbar img {
-  width: 50px;
-  margin-left: 10px;
-}
-
-.navbar .logo span {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 32px;
-  flex: 0.1;
-}
-
 .navbar .search-box {
   display: flex;
   justify-content: center;
@@ -115,18 +94,24 @@
   width: 100px;
 }
 
-.category-search-bar {
+.categories-container {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   background: linear-gradient(to right, #0f2f58, #1f5eb1);
-  padding: 10px;
+  padding: 8px;
 }
 
-.category-search-bar .category {
+.categories-container .categories {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0.5;
+}
+
+.categories .category {
   color: whitesmoke;
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: bolder;
   text-align: center;
   opacity: 0.6;
@@ -134,11 +119,13 @@
   border-bottom: 1px dashed transparent;
 }
 
-.category-search-bar .category:hover {
+.categories .category:hover {
   opacity: 1;
   border-bottom-color: whitesmoke;
 }
 
-.category span {
-  font-size: 30px;
+.categories .category span {
+  font-size: 24px;
 }
+
+/* slide show contianer styles */
