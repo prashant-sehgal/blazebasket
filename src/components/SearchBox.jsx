@@ -5,7 +5,7 @@ export default function SearchBox() {
     <div className="search-box">
       <input type="text" placeholder="Search for any brand or product" />
       <button>
-        <span class="material-symbols-outlined">search</span>
+        <span className="material-symbols-outlined">search</span>
       </button>
     </div>
   )

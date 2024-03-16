@@ -1,5 +1,10 @@
 import React from 'react'
+import SlideShow from '../components/SlideShow'
 
 export default function Home() {
-  return <div>Home</div>
+  return (
+    <div className="home">
+      <SlideShow />
+    </div>
+  )
 }

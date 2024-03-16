@@ -43,7 +43,7 @@ function CategoryLinkElement({ title, icon }) {
   return (
     <NavLink to={`/${title}`}>
       <div className="category">
-        <span class="material-symbols-outlined">{icon}</span>
+        <span className="material-symbols-outlined">{icon}</span>
         <p className="title">{title}</p>
       </div>
     </NavLink>

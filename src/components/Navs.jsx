@@ -6,7 +6,7 @@ export default function Navs() {
   return (
     <div className="navs">
       <NavsElement to="/cart" className="cart">
-        <span class="material-symbols-outlined">shopping_cart</span>
+        <span className="material-symbols-outlined">shopping_cart</span>
         cart (10)
       </NavsElement>
       <NavsElement to="/login" className="login">
