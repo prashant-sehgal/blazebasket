@@ -20,6 +20,9 @@ function App() {
             <SearchBox />
             <Navs />
           </div>
+          <div className="small-screen-search">
+            <SearchBox />
+          </div>
           <div className="categories-container">
             <div className="categories">
               <CategoryLinkElement title="smartphones" icon="smartphone" />
@@ -30,10 +33,12 @@ function App() {
             </div>
           </div>
         </div>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
+        <div className="pages">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </div>
       </Router>
     </div>
   )
