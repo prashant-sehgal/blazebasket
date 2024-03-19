@@ -31,8 +31,6 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={() => showPrompt('success', 'none')}>Do it</button>
-      <button onClick={() => showPrompt('warning', 'hello')}>Do it</button>
       <Prompt prompt={prompt} />
       <Router>
         <div className="navigation">
