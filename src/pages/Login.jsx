@@ -1,16 +1,19 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import FormContainer from '../components/FormContainer'
 
 export default function Login() {
   return (
-    <div className="login">
+    <FormContainer className="login">
       <div className="header">
         <h2>Login</h2>
-        <p className="text">Get access to your favourite brands and products</p>
+        <p className="text">
+          Access your personalized shopping journey with just one click
+        </p>
       </div>
       <form className="login-form">
         <div className="form-element">
-          <input type="text" placeholder="Enter username" required />
+          <input type="email" placeholder="Enter your email address" required />
         </div>
         <div className="form-element">
           <input type="password" placeholder="Enter password" required />
@@ -19,9 +22,9 @@ export default function Login() {
           Login
         </button>
       </form>
-      <p className="signup-link">
+      <p className="footer">
         Do not have an account? <NavLink to="/signup">SignUp</NavLink>
       </p>
-    </div>
+    </FormContainer>
   )
 }
