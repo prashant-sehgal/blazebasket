@@ -11,14 +11,23 @@
   text-decoration: none;
 }
 
+:root {
+  --primary: #16427c;
+  --secondary: #1f5eb1;
+  --blue-gradient: linear-gradient(to right, var(--primary), var(--secondary));
+}
+
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.navigation {
+  background: var(--blue-gradient);
 }
 
 .navigation .navbar {
   display: flex;
   justify-content: space-between;
-  background: linear-gradient(to right, #0f2f58, #1f5eb1);
   height: 60px;
   padding: 10px;
 }
@@ -55,7 +64,6 @@
 }
 
 .small-screen-search {
-  background: linear-gradient(to right, #0f2f58, #1f5eb1);
   display: none;
   padding: 10px;
 }
@@ -96,14 +104,13 @@
 
 .navs .login {
   background-color: white;
-  color: #0f2f58;
+  color: var(--secondary);
   width: 100px;
 }
 
 .categories-container {
   display: flex;
   justify-content: center;
-  background: linear-gradient(to right, #0f2f58, #1f5eb1);
   padding: 8px;
 }
 
