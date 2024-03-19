@@ -10,10 +10,30 @@ import Signup from './pages/Signup'
 import Logo from './components/Logo'
 import SearchBox from './components/SearchBox'
 import Navs from './components/Navs'
+import Prompt from './components/Prompt'
+import { useState } from 'react'
 
 function App() {
+  const [prompt, setPrompt] = useState({
+    type: null,
+    message: null,
+    visible: false,
+  })
+
+  function showPrompt(type, message) {
+    setPrompt({ type, message, visible: true })
+    setTimeout(function () {
+      setPrompt((prompt) => {
+        return { ...prompt, visible: false }
+      })
+    }, 3000)
+  }
+
   return (
     <div className="App">
+      <button onClick={() => showPrompt('success', 'none')}>Do it</button>
+      <button onClick={() => showPrompt('warning', 'hello')}>Do it</button>
+      <Prompt prompt={prompt} />
       <Router>
         <div className="navigation">
           <div className="navbar">

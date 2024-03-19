@@ -16,10 +16,17 @@
   --secondary: #1f5eb1;
   --blue-gradient: linear-gradient(to right, var(--primary), var(--secondary));
   --text-subtitle: #4e4e4e;
+  --custom-red: #dc3545;
+  --custom-warn: #c79708;
+  --custom-success-green: #198754;
 }
 
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.App {
+  position: relative;
 }
 
 .navigation {
@@ -313,4 +320,72 @@
   .slide-show .action-buttons button span {
     font-size: 30px;
   }
+}
+
+/* prompt styles */
+.prompt {
+  position: absolute;
+  display: flex;
+  width: 340px;
+  height: 50px;
+  top: 60px;
+  left: 0;
+  right: 0;
+  align-items: center;
+  margin: auto;
+  background-color: whitesmoke;
+  padding: 10px;
+  z-index: 100;
+  transition: top 0.2s ease-in-out;
+  border-bottom: 4px solid whitesmoke;
+}
+
+.prompt p {
+  font-weight: 500;
+}
+
+.prompt .icon {
+  margin-top: 6px;
+  margin-right: 10px;
+}
+
+/* error prompt */
+.prompt.error {
+  border-bottom-color: var(--custom-red);
+}
+
+.prompt.error p {
+  color: var(--custom-red);
+}
+
+.prompt.error .icon {
+  color: var(--custom-red);
+}
+
+/* warning prompt */
+.prompt.prompt.warning {
+  border-bottom-color: var(--custom-warn);
+}
+
+.prompt.warning p {
+  color: var(--custom-warn);
+  border-bottom-color: var(--custom-warn);
+}
+
+.prompt.warning .icon {
+  color: var(--custom-warn);
+}
+
+/* success prompt */
+.prompt.success {
+  border-bottom-color: var(--custom-success-green);
+}
+
+.prompt.success p {
+  color: var(--custom-success-green);
+  border-bottom-color: var(--custom-success-green);
+}
+
+.prompt.success .icon {
+  color: var(--custom-success-green);
 }
