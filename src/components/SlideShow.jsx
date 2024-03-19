@@ -2,14 +2,27 @@ import React, { useEffect, useState } from 'react'
 
 export default function SlideShow() {
   const [activeSlide, setActiveSlide] = useState(1)
+  const [count, setCount] = useState(1)
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      goToNextSlide()
+    }, 5000) // 5000 milliseconds = 5 seconds
+
+    // Clear interval on component unmount
+    return () => clearInterval(intervalId)
+  }, [])
 
   function goBackToPreviousSlide() {
-    if (activeSlide === 1) setActiveSlide(4)
-    else setActiveSlide(activeSlide - 1)
+    setActiveSlide((value) => {
+      if (value === 1) return 4
+      else return value - 1
+    })
   }
   function goToNextSlide() {
-    if (activeSlide === 4) setActiveSlide(1)
-    else setActiveSlide(activeSlide + 1)
+    setActiveSlide((value) => {
+      if (value === 4) return 1
+      else return value + 1
+    })
   }
   function goToSlideLink(event) {
     if (event.target.classList.contains('action-buttons')) {
