@@ -9,7 +9,7 @@ export default function Navs() {
         <span className="material-symbols-outlined">shopping_cart</span>
         cart (10)
       </NavsElement>
-      <NavsElement to="/login" className="login">
+      <NavsElement to="/login" className="login-btn">
         Login
       </NavsElement>
     </div>

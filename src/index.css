@@ -15,6 +15,7 @@
   --primary: #16427c;
   --secondary: #1f5eb1;
   --blue-gradient: linear-gradient(to right, var(--primary), var(--secondary));
+  --text-subtitle: #4e4e4e;
 }
 
 .material-symbols-outlined {
@@ -102,7 +103,7 @@
   width: 102px;
 }
 
-.navs .login {
+.navs .login-btn {
   background-color: white;
   color: var(--secondary);
   width: 100px;
@@ -197,6 +198,67 @@
 .slide-show .image img {
   width: 100%;
   height: 100%;
+}
+
+/* login page styles */
+
+.App .login {
+  width: 35%;
+  margin: auto;
+  margin-top: 20px;
+  max-width: 500px;
+  min-width: 350px;
+}
+
+.App .login .header h2 {
+  font-size: 30px;
+}
+
+.App .login .header p {
+  color: var(--text-subtitle);
+}
+
+.login .login-form {
+  height: 220px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.login-form .form-element input {
+  width: 100%;
+  height: 50px;
+  border: 1px solid var(--text-subtitle);
+  font-size: 16px;
+  padding: 20px;
+}
+
+.login-form button {
+  background: var(--blue-gradient);
+  border: none;
+  height: 40px;
+  color: whitesmoke;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.login-form button:hover {
+  opacity: 1;
+}
+
+.login-form .form-element input:focus {
+  outline: none;
+}
+
+.login .signup-link a {
+  color: #16427c;
+}
+
+.login .signup-link a:hover {
+  text-decoration: underline;
 }
 
 /* media query */
