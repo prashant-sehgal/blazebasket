@@ -1,23 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function Prompt({ prompt }) {
-  const type = prompt.type ? prompt.type : ''
-  const message = prompt.message ? prompt.message : ''
+  const [top, setTop] = useState(-60)
+  const type = prompt ? prompt.type : ''
+  const message = prompt ? prompt.message : ''
+
+  useEffect(
+    function () {
+      setTop(60)
+      setTimeout(function () {
+        setTop(-60)
+      }, 2000)
+    },
+    [prompt]
+  )
 
   return (
-    <div
-      className={`prompt ${type}`}
-      style={{ top: prompt.visible ? 60 : -60 }}
-    >
+    <div className={`prompt ${type}`} style={{ top }}>
       <div className="icon">
         <span className="material-symbols-outlined">
-          {type ? (type === 'success' ? 'done' : type) : ''}
+          {type === 'success' ? 'done' : type}
         </span>
       </div>
-      <p className="message">{message ? message : ''}</p>
+      <p className="message">{message}</p>
     </div>
   )
 }
-
-// color: var(--custom-red);
-// border-bottom: 4px solid var(--custom-red);

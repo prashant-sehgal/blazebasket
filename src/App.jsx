@@ -11,22 +11,13 @@ import Logo from './components/Logo'
 import SearchBox from './components/SearchBox'
 import Navs from './components/Navs'
 import Prompt from './components/Prompt'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function App() {
-  const [prompt, setPrompt] = useState({
-    type: null,
-    message: null,
-    visible: false,
-  })
+  const [prompt, setPrompt] = useState(null)
 
   function showPrompt(type, message) {
-    setPrompt({ type, message, visible: true })
-    setTimeout(function () {
-      setPrompt((prompt) => {
-        return { ...prompt, visible: false }
-      })
-    }, 3000)
+    setPrompt({ type, message })
   }
 
   return (
