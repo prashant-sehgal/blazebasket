@@ -7,10 +7,12 @@ export default function Prompt({ prompt }) {
 
   useEffect(
     function () {
-      setTop(60)
-      setTimeout(function () {
-        setTop(-60)
-      }, 2000)
+      if (prompt) {
+        setTop(60)
+        setTimeout(function () {
+          setTop(-60)
+        }, 2000)
+      }
     },
     [prompt]
   )
