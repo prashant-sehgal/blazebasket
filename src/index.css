@@ -307,6 +307,7 @@
 .product-overview {
   width: 180px;
   padding: 4px;
+  margin-right: 10px;
 }
 
 .product-overview .product-image {
