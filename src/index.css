@@ -201,12 +201,83 @@ p {
 .page {
   width: 90%;
   margin: auto;
+  max-width: 1500px;
+}
+
+/* carousel styles */
+.carousel {
+  aspect-ratio: 5 / 2;
+  position: relative;
+}
+
+.carousel .controls {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.carousel .controls button {
+  border: none;
+  background: none;
+  width: 80px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.1ms ease-in-out;
+}
+
+.carousel .controls button:hover {
+  opacity: 1;
+}
+
+.carousel .controls button span {
+  font-size: 40px;
+  color: rgb(134, 134, 134);
+}
+
+.carousel .images {
+  aspect-ratio: 5 / 2;
+  position: relative;
+}
+
+.carousel .images .image {
+  width: 100%;
+  aspect-ratio: 5 / 2;
+  position: absolute;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.carousel .images .image img {
+  width: 100%;
+  height: 100%;
 }
 
 /* responsive styles for different screen sizes */
 @media (max-width: 1000px) {
   .navbar .header .search-bar {
     flex: 0.9;
+  }
+}
+
+@media (max-width: 680px) {
+  .navbar .header .search-bar {
+    flex: 0.8;
+  }
+  .page {
+    width: 100%;
+  }
+  .carousel,
+  .carousel .images .image {
+    aspect-ratio: 5 / 3;
   }
 }
 
