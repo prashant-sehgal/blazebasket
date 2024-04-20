@@ -45,6 +45,9 @@
   --secondary-color: #1f5eb1;
   --white-text: #f5f5f5;
   --black-text: #1f1f1f;
+  --custom-red: #dc3545;
+  --custom-warn: #c79708;
+  --custom-success-green: #198754;
 }
 
 /* Navbar */
@@ -261,6 +264,90 @@ p {
   height: 100%;
 }
 
+/* Product Container */
+.products-container {
+  padding: 10px;
+}
+.products-container .title {
+  color: goldenrod;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-decoration: underline;
+}
+
+.products-container .content {
+  display: flex;
+  overflow-x: scroll;
+}
+
+/* product preivew */
+.product-preview {
+  width: 200px;
+  overflow: hidden;
+  padding: 10px;
+  opacity: 0.9;
+  border: 0.5px solid #868686;
+}
+
+.product-preview:hover {
+  opacity: 1;
+}
+
+.product-preview:hover .product-title {
+  color: var(--secondary-color);
+}
+
+.product-preview .product-image img {
+  width: 100%;
+}
+
+.product-preview .product-title {
+  font-size: 14px;
+  text-align: justify;
+  font-weight: 500;
+}
+
+.product-preview .product-ratings {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90px;
+  margin: 10px 0px 10px 0px;
+}
+
+.product-preview .product-ratings .ratings {
+  background: green;
+  color: var(--white-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  padding-left: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+.product-preview .product-ratings .total-ratings {
+  font-size: 14px;
+  color: #5a5a5a;
+}
+
+.product-preview .product-ratings .ratings span {
+  color: var(--white-text);
+  font-size: 20px;
+  font-variation-settings: 'FILL' 1, 'wght' 40, 'GRAD' 0, 'opsz' 24;
+}
+
+.product-preview .product-pricing {
+  font-weight: 600;
+}
+
+.product-preview .product-short-description {
+  font-size: 12px;
+  /* text-align: justify; */
+  color: #5a5a5a;
+}
+
 /* responsive styles for different screen sizes */
 @media (max-width: 1000px) {
   .navbar .header .search-bar {
@@ -294,4 +381,27 @@ p {
   .product-filters .filter p {
     font-size: 10px;
   }
+}
+
+/* Define scrollbar styles */
+/* Hide the default scrollbar */
+::-webkit-scrollbar {
+  width: 5px; /* Adjust the width as needed */
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Or any color you prefer */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px; /* Set to 0 to make it box-shaped */
+  background-color: #afafaf;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: gray; /* Or any color you prefer */
 }
