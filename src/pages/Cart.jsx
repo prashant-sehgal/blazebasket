@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import QuantityEditor from '../components/QuantityEditor'
+import PrimaryButton from '../components/Buttons/PrimaryButton'
 
 export default function Cart() {
   const [quantity, setQuantity] = useState(1)
@@ -91,7 +92,57 @@ export default function Cart() {
             <ProductPrice>Rs. 1,29,900</ProductPrice>
           </Row>
         </div>
+        <Summary />
       </div>
+    </div>
+  )
+}
+
+function Summary() {
+  return (
+    <div className="summary">
+      <Section>
+        <p className="summary-title">summary</p>
+      </Section>
+      <Section>
+        <PromoCode />
+      </Section>
+      <Section>
+        <Cost title="subtotal" amount="Rs. 1,29,900" />
+        <Cost title="shipping" amount="Rs. 0" />
+        <Cost title="gst" amount="Rs. 0" />
+      </Section>
+      <Section>
+        <Cost title="estimated total" amount="Rs. 12,29,900" />
+      </Section>
+      <Section>
+        <PrimaryButton style={{ width: '100%', height: 50 }}>
+          CHECKOUT
+        </PrimaryButton>
+      </Section>
+    </div>
+  )
+}
+
+function Section({ children }) {
+  return <div className="section">{children}</div>
+}
+
+function PromoCode() {
+  return (
+    <div className="promo-code">
+      <p>Do you have a promo code ?</p>
+      <input type="text" />
+      <button>Apply</button>
+    </div>
+  )
+}
+
+function Cost({ title, amount, styles }) {
+  return (
+    <div className="cost">
+      <p className="cost-title">{title}</p>
+      <p className="cost-amount">{amount}</p>
     </div>
   )
 }

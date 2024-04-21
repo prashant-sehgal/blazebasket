@@ -570,12 +570,13 @@
 
 .cart .container {
   display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .cart .container .products-list {
-  width: 100%;
-  overflow-x: scroll;
   margin-top: 20px;
+  overflow-x: scroll;
 }
 
 .cart .container .products-list .row {
@@ -644,6 +645,11 @@
   color: var(--custom-red);
   background: none;
   cursor: pointer;
+  opacity: 0.8;
+}
+
+.product-cell .details button:hover {
+  opacity: 1;
 }
 
 .product-cell .img {
@@ -653,6 +659,72 @@
 
 .product-cell .img img {
   width: 100%;
+}
+
+.summary {
+  width: 300px;
+}
+
+.summary .section {
+  border-bottom: 2px solid var(--primary-color);
+  padding: 4px;
+  padding: 20px 0px 20px 0px;
+}
+
+.cost {
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.cost p {
+  font-size: 15px;
+  margin: 5px;
+}
+
+.cost .cost-title {
+  font-weight: 600;
+}
+
+.cost-amount {
+  text-transform: capitalize;
+}
+
+.summary .summary-title {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.promo-code {
+  width: 100%;
+}
+
+.promo-code p {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.promo-code input {
+  border: 2px solid var(--secondary-color);
+  outline: none;
+  /* padding-top: 2px; */
+  padding-left: 5px;
+  margin-top: 10px;
+  font-weight: 600;
+  height: 30px;
+}
+
+.promo-code button {
+  height: 30px;
+  background: var(--secondary-color);
+  color: white;
+  border: none;
+  width: 50px;
+  text-align: center;
+  outline: none;
+  cursor: pointer;
 }
 
 /* responsive styles for different screen sizes */
