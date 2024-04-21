@@ -5,6 +5,8 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Cart from './pages/Cart'
+import Results from './pages/Results'
+import Product from './pages/Product'
 
 function App() {
   return (
@@ -17,6 +19,21 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/cart" element={<Cart />} />
+            <Route
+              path="/smartphones"
+              element={<Results category="smartphones" />}
+            />
+            <Route path="/laptops" element={<Results category="laptops" />} />
+            <Route
+              path="/smartwatches"
+              element={<Results category="smartwatches" />}
+            />
+            <Route
+              path="/headphones"
+              element={<Results category="headphones" />}
+            />
+            <Route path="/speakers" element={<Results category="speakers" />} />
+            <Route path="/product" element={<Product />} />
           </Routes>
         </div>
       </Router>
