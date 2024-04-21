@@ -5,6 +5,7 @@ import ProductPreview from '../components/ProductPreview'
 import ProductsContainer from '../components/ProductsContainer'
 import Box from '../components/Box'
 import SecondaryButton from '../components/Buttons/SecondaryButton'
+import QuantityEditor from '../components/QuantityEditor'
 
 export default function Product() {
   const [quantity, setQuantity] = useState(1)
@@ -73,7 +74,12 @@ export default function Product() {
             Quaerat quo tempora quisquam nihil, incidunt culpa, maiores
             quibusdam saepe aperiam beatae earum iusto!...
           </p>
-          <QuantityEditor value={quantity} setValue={setQuantity} size={100} />
+          <QuantityEditor
+            style={{ marginTop: 20 }}
+            value={quantity}
+            setValue={setQuantity}
+            size={100}
+          />
           <div className="product-price-container">
             <p>Rs. 1,20,000</p>
             <PrimaryButton size={200}>ADD TO CART</PrimaryButton>
@@ -169,16 +175,6 @@ function RatingsDisplay({
         </span>
       ))}
       ({averageRatings})
-    </div>
-  )
-}
-
-function QuantityEditor({ value, setValue, style }) {
-  return (
-    <div className="quantity-editor" style={style}>
-      <button onClick={() => setValue(value - 1)}>-</button>
-      <p className="value">{value}</p>
-      <button onClick={() => setValue(value + 1)}>+</button>
     </div>
   )
 }

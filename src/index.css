@@ -195,7 +195,7 @@
 }
 
 .product-filters .filter span,
-p {
+.product-filters .filter p {
   color: var(--white-text);
 }
 
@@ -556,6 +556,105 @@ p {
   font-style: italic;
 }
 
+/* cart page */
+.cart {
+  margin: 10px;
+}
+.cart .title {
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--black-text);
+  border-bottom: 1px dashed var(--black-text);
+}
+
+.cart .container {
+  display: flex;
+}
+
+.cart .container .products-list {
+  width: 100%;
+  overflow-x: scroll;
+  margin-top: 20px;
+}
+
+.cart .container .products-list .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 800px;
+  border-bottom: 0.5px solid #868686;
+  margin-top: 4px;
+}
+
+.cart .container .products-list .title {
+  border: 0px;
+  border-top: 2px solid #4b4b4b;
+  border-bottom: 2px solid #4b4b4b;
+  font-size: 14px;
+  line-height: 40px;
+  font-weight: 500;
+  margin: 0;
+  border-radius: 0px;
+}
+
+.product-title-col {
+  flex: 0.6;
+}
+
+.product-quantity-col {
+  flex: 0.2;
+  display: flex;
+  justify-content: center;
+  /* text-align: center; */
+}
+
+.product-price-col {
+  flex: 0.2;
+  text-align: center;
+}
+
+.product-total-col {
+  flex: 0.2;
+  text-align: center;
+}
+
+.product-cell {
+  display: flex;
+  height: 80px;
+  align-items: center;
+}
+
+.product-cell .details {
+  width: 200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  font-size: 13px;
+  padding: 2px;
+  color: var(--black-text);
+  font-weight: 500;
+}
+
+.product-cell .details button {
+  border: 0;
+  border-bottom: 1px solid var(--custom-red);
+  color: var(--custom-red);
+  background: none;
+  cursor: pointer;
+}
+
+.product-cell .img {
+  width: 70px;
+  min-width: 70px;
+}
+
+.product-cell .img img {
+  width: 100%;
+}
+
 /* responsive styles for different screen sizes */
 @media (max-width: 1000px) {
   .navbar .header .search-bar {
@@ -612,7 +711,7 @@ p {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  border-radius: 10px; /* Set to 0 to make it box-shaped */
+  /* border-radius: 10px; Set to 0 to make it box-shaped */
   background-color: #afafaf;
 }
 
@@ -673,11 +772,10 @@ p {
   justify-content: space-between;
   padding: 2px;
   background-color: #e2e2e2;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 .quantity-editor p {
-  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
