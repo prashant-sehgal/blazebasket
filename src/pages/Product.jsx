@@ -6,6 +6,7 @@ import ProductsContainer from '../components/ProductsContainer'
 import Box from '../components/Box'
 import SecondaryButton from '../components/Buttons/SecondaryButton'
 import QuantityEditor from '../components/QuantityEditor'
+import UserLogo from '../components/UserLogo'
 
 export default function Product() {
   const [quantity, setQuantity] = useState(1)
@@ -179,20 +180,12 @@ function RatingsDisplay({
   )
 }
 
-function UserLogo({ style }) {
-  return (
-    <div className="user-logo" style={style}>
-      <span className="material-symbols-outlined">person</span>
-    </div>
-  )
-}
-
 function Review({ user, ratings, message }) {
   return (
     <div className="review">
       <div className="user">
         <div>
-          <UserLogo style={{ marginRight: 10, width: 30 }} />
+          <UserLogo style={{ marginRight: 10, width: 20 }} />
           {user}
         </div>
         <RatingsDisplay color="#daa520" averageRatings={ratings} />
@@ -209,7 +202,7 @@ function ReviewForm({ onSubmit }) {
   return (
     <div className="review-form">
       <div className="user-section">
-        <UserLogo />{' '}
+        <UserLogo style={{ width: 30 }} />
         <span style={{ marginLeft: 4, fontStyle: 'italic' }}>Tanya</span>
         <div className="btn-right-container">
           <SecondaryButton

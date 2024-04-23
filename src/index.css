@@ -496,13 +496,22 @@
 }
 
 .user-logo {
-  background-color: #cacaca;
-  width: 40px;
+  width: 35px;
   aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 20px;
+  overflow: hidden;
+  opacity: 0.9;
+}
+
+.user-logo:hover {
+  opacity: 1;
+}
+
+.user-logo img {
+  width: 100%;
 }
 /* reviews display */
 
@@ -726,6 +735,8 @@
   outline: none;
   cursor: pointer;
 }
+
+/* user page */
 
 /* responsive styles for different screen sizes */
 @media (max-width: 1000px) {

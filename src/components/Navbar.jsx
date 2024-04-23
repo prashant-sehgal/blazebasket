@@ -1,7 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-
-import Custom1Button from './Buttons/Custom1Button'
+import UserLogo from './UserLogo'
 
 export default function Navbar() {
   return (
@@ -13,8 +12,14 @@ export default function Navbar() {
         <SearchBar />
         <Links>
           <Cart amount={0} />
-          <NavLink to="/login">
+          {/* <NavLink to="/login">
             <Custom1Button>Login</Custom1Button>
+          </NavLink> */}
+          <NavLink to="/user">
+            <UserLogo
+              img="https://www.fairtravel4u.org/wp-content/uploads/2018/06/sample-profile-pic.png"
+              size={40}
+            />
           </NavLink>
         </Links>
       </div>
