@@ -7,7 +7,7 @@ export default function ProductRatings({ ratings = 3.5, totalRatings = '23' }) {
         {ratings}
         <span className="material-symbols-outlined">grade</span>
       </div>
-      <div className="total-ratings">({totalRatings})</div>
+      {/* <div className="total-ratings">({0})</div> */}
     </div>
   )
 }

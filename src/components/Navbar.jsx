@@ -1,6 +1,11 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import UserLogo from './UserLogo'
+import Custom1Button from './Buttons/Custom1Button'
+import Logo from './Logo'
+import SearchBar from './SearchBar'
+import CartLink from './CartLink'
+import Filter from './Filter'
+import Links from './Links'
 
 export default function Navbar() {
   return (
@@ -11,16 +16,16 @@ export default function Navbar() {
         </NavLink>
         <SearchBar />
         <Links>
-          <Cart amount={0} />
-          {/* <NavLink to="/login">
+          <CartLink amount={0} />
+          <NavLink to="/login">
             <Custom1Button>Login</Custom1Button>
-          </NavLink> */}
-          <NavLink to="/user">
+          </NavLink>
+          {/* <NavLink to="/user">
             <UserLogo
               img="https://www.fairtravel4u.org/wp-content/uploads/2018/06/sample-profile-pic.png"
               size={40}
             />
-          </NavLink>
+          </NavLink> */}
         </Links>
       </div>
       <div className="mobile-search">
@@ -34,49 +39,5 @@ export default function Navbar() {
         <Filter title="speakers" icon="speaker" />
       </div>
     </div>
-  )
-}
-
-function Logo() {
-  return <div className="logo">BlazeBasket</div>
-}
-
-function SearchBar({ mode = 'desktop' }) {
-  return (
-    <div className="search-bar">
-      <input
-        type="text"
-        placeholder="Find what you need quickly and effortlessly..."
-      />
-      <button className="search-button">
-        <span className="material-symbols-outlined d">search</span>
-      </button>
-    </div>
-  )
-}
-
-function Cart({ amount = 5 }) {
-  return (
-    <NavLink to="/cart">
-      <div className="cart-icon">
-        <p className="value">{amount}</p>
-        <span className="material-symbols-outlined d">shopping_cart</span>
-      </div>
-    </NavLink>
-  )
-}
-
-function Links({ children }) {
-  return <div className="links">{children}</div>
-}
-
-function Filter({ title, icon }) {
-  return (
-    <NavLink to={`/${title}`}>
-      <div className="filter">
-        <span className="material-symbols-outlined">{icon}</span>
-        <p className="title">{title}</p>
-      </div>
-    </NavLink>
   )
 }

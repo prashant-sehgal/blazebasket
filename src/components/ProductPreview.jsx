@@ -1,23 +1,21 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import ProductRatings from './ProductPreviewComponents/ProductRatings'
+import { getProductImage } from '../API'
+import { formatIndianPrice } from '../Utils'
 
 export default function ProductOverview({ product }) {
-  function limitString(text, limit) {
-    return `${text.split(' ').slice(0, limit).join(' ')}...`
-  }
   return (
-    <NavLink to="/product">
+    <a href={`/product?id=${product._id}`}>
       <div className="product-preview">
         <div className="product-image">
-          <img src="/sample-product.webp" />
+          <img src={getProductImage(product.images[0])} />
         </div>
-        <div className="product-title">
-          Samsung Galaxy S24 Ultra 5G Pure Titanium (12GB, 256GB)
-        </div>
+        <div className="product-title">{product.title}</div>
         <ProductRatings />
-        <div className="product-pricing">Rs. 1,29,900</div>
+        <div className="product-pricing">
+          {formatIndianPrice(`${product.price}`)}
+        </div>
       </div>
-    </NavLink>
+    </a>
   )
 }

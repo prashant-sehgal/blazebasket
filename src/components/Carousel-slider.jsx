@@ -52,7 +52,7 @@ export default function Carousel({ images, size }) {
             }}
             key={i}
           >
-            <img src={`./${img}`} />
+            <img src={img} />
           </div>
         ))}
       </div>
