@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { jwtDecode } from 'jwt-decode'
 
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
@@ -8,16 +10,48 @@ import Cart from './pages/Cart'
 import Results from './pages/Results'
 import Product from './pages/Product'
 import User from './pages/User'
+import { getUserData } from './API'
 
 function App() {
+  const [loginInfo, setLoginInfo] = useState({ isLogedIn: false })
+
+  async function loadUserFromJWT() {
+    const token = document.cookie.split('=')
+    if (token[0] !== 'jwt') return
+
+    const uid = jwtDecode(token[1]).id
+
+    if (!uid) return
+
+    const user = await getUserData(uid)
+    if (!user._id) return
+
+    setLoginInfo({
+      isLogedIn: true,
+      user,
+    })
+  }
+
+  useEffect(function () {
+    loadUserFromJWT()
+  }, [])
+
+  function setLoginJWT(data) {
+    document.cookie = `jwt=${data[0]}; expires=${new Date(
+      data[1] * 1
+    ).toUTCString()}; path=/`
+
+    window.location.href = '/'
+  }
+
   return (
     <div className="App">
       <Router>
-        <Navbar />
+        <Navbar loginInfo={loginInfo} />
         <div className="page">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Home loginInfo={loginInfo} />} />
+            <Route path="/login" element={<Login setLogin={setLoginJWT} />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/user" element={<User />} />
@@ -35,6 +69,10 @@ function App() {
               element={<Results category="headphones" />}
             />
             <Route path="/speakers" element={<Results category="speakers" />} />
+            <Route
+              path="/search/:query"
+              element={<Results category="search" />}
+            />
             <Route path="/product" element={<Product />} />
           </Routes>
         </div>

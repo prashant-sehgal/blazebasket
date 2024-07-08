@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import ProductOverview from '../components/ProductPreview'
-import { categoryPicks } from '../API'
+import { categoryPicks, searchProducts } from '../API'
+import { useParams } from 'react-router-dom'
 
 export default function Results({ category }) {
-  const [products, setProducts] = useState()
+  const [products, setProducts] = useState('')
+
+  const { query } = useParams()
+
   useEffect(function () {
     async function loadData() {
       const catString =
@@ -21,15 +25,33 @@ export default function Results({ category }) {
 
       if (data) setProducts(data)
     }
-    loadData()
+
+    async function searchData() {
+      const response = await searchProducts(query)
+
+      if (response.length > 0) setProducts(response)
+      else setProducts('none')
+    }
+
+    if (category === 'search') {
+      searchData()
+    } else {
+      loadData()
+    }
   }, [])
 
   return (
     <div className="results">
       <div className="products">
-        {products
-          ? products.map((product) => <ProductOverview product={product} />)
-          : ''}
+        {products.length > 0 && products !== 'none' ? (
+          products.map((product) => (
+            <ProductOverview product={product} key={product._id} />
+          ))
+        ) : products === 'none' ? (
+          <p>No Product Found</p>
+        ) : (
+          <p>Loading</p>
+        )}
       </div>
     </div>
   )

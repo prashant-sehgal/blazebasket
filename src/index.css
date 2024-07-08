@@ -567,6 +567,23 @@
   font-size: 14px;
 }
 
+.user-icon {
+  border-radius: 100%;
+  background: #ffffff;
+  overflow: hidden;
+  aspect-ratio: 1;
+  opacity: 0.9;
+  margin-bottom: 10px;
+}
+
+.user-icon:hover {
+  opacity: 1;
+}
+
+.user-icon img {
+  width: 100%;
+}
+
 .review .review-profile-img {
   width: 25px;
   margin-right: 10px;

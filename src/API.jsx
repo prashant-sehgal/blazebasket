@@ -11,8 +11,39 @@ const categories = [
   'headphone',
 ]
 
+export async function getUserData(uid) {
+  try {
+    const res = await axios.post(`${host}/users/${uid}`, {
+      appId: process.env.REACT_APP_APPLICATION_ID,
+    })
+
+    return res.data.data.document
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export async function login(email, password) {
+  try {
+    const response = await axios.post(`${host}/users/login`, {
+      email,
+      password,
+    })
+    return response.data
+  } catch (error) {
+    if (error.response.data.status === 'fail') return error.response.data
+  }
+}
+
 export function getUserImage(img) {
   return `${url}/public/images/profile/${img}`
+}
+
+export async function searchProducts(search) {
+  try {
+    const response = await axios.get(`${host}/products/search/${search}`)
+    return response.data.data.products
+  } catch (error) {}
 }
 
 export async function getProductReviews(id) {

@@ -36,8 +36,6 @@ export default function Product() {
 
       if (productData) setProduct(productData)
       if (reviewsData) setReviews(reviewsData)
-
-      console.log(reviewsData)
     }
 
     loadData()

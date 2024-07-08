@@ -2,7 +2,7 @@ import React from 'react'
 import Carousel from '../components/Carousel'
 import ProductsContainer from '../components/ProductsContainer'
 
-export default function Home() {
+export default function Home({ loginInfo }) {
   const images = ['image-1.jpg', 'image-2.jpg', 'image-3.jpg', 'image-4.jpg']
   return (
     <div className="home">
@@ -15,22 +15,6 @@ export default function Home() {
         title="Top Picks: Explore Our Best Sellers!"
         type="top-picks"
       />
-      {/* <ProductsContainer
-        title="Top Picks: Explore Our Best Sellers!"
-        styles={{ marginTop: 10 }}
-      >
-        <ProductPreview />
-        <ProductPreview />
-        <ProductPreview />
-        <ProductPreview />
-        <ProductPreview />
-        <ProductPreview />
-        <ProductPreview />
-        <ProductPreview />
-        <ProductPreview />
-        <ProductPreview />
-        <ProductPreview />
-      </ProductsContainer> */}
     </div>
   )
 }

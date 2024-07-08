@@ -6,8 +6,10 @@ import SearchBar from './SearchBar'
 import CartLink from './CartLink'
 import Filter from './Filter'
 import Links from './Links'
+import { getUserImage } from '../API'
+import UserIcon from './UserIcon'
 
-export default function Navbar() {
+export default function Navbar({ loginInfo }) {
   return (
     <div className="navbar">
       <div className="header">
@@ -16,10 +18,19 @@ export default function Navbar() {
         </NavLink>
         <SearchBar />
         <Links>
-          <CartLink amount={0} />
-          <NavLink to="/login">
-            <Custom1Button>Login</Custom1Button>
-          </NavLink>
+          {loginInfo.isLogedIn ? (
+            <>
+              <CartLink amount={0} />
+
+              <NavLink to="/user">
+                <UserIcon img={getUserImage(loginInfo.user.image)} size={40} />
+              </NavLink>
+            </>
+          ) : (
+            <NavLink to="/login">
+              <Custom1Button>Login</Custom1Button>
+            </NavLink>
+          )}
           {/* <NavLink to="/user">
             <UserLogo
               img="https://www.fairtravel4u.org/wp-content/uploads/2018/06/sample-profile-pic.png"

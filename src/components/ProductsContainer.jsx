@@ -27,7 +27,9 @@ export default function ProductsContainer({ title, styles, type, category }) {
       <p className="title">{title}</p>
       <div className="content">
         {products
-          ? products.map((product) => <ProductPreview product={product} />)
+          ? products.map((product) => (
+              <ProductPreview product={product} key={product._id} />
+            ))
           : ''}
       </div>
     </div>
