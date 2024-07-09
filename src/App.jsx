@@ -63,9 +63,14 @@ function App() {
           <Routes>
             <Route path="/" element={<Home loginInfo={loginInfo} />} />
             <Route path="/login" element={<Login setLogin={setLoginJWT} />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route
+              path="/signup"
+              element={
+                <Signup shopPrompt={showPrompt} setLogin={setLoginJWT} />
+              }
+            />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/user" element={<User />} />
+            <Route path="/user" element={<User user={loginInfo.user} />} />
             <Route
               path="/smartphones"
               element={<Results category="smartphones" />}

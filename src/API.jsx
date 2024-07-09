@@ -11,6 +11,23 @@ const categories = [
   'headphone',
 ]
 
+export async function signup(name, email, password) {
+  try {
+    const response = await axios.post(`${host}/users/signup`, {
+      name,
+      email,
+      password,
+    })
+
+    if (response.data.status === 'success') {
+      return response.data
+    }
+  } catch (error) {
+    if (error.response.data.message)
+      throw new Error(error.response.data.message)
+  }
+}
+
 export async function getUserData(uid) {
   try {
     const res = await axios.post(`${host}/users/${uid}`, {

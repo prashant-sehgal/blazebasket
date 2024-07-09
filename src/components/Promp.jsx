@@ -23,7 +23,7 @@ export default function Prompt({ prompt, close }) {
   useEffect(function () {
     setTimeout(function () {
       close()
-    }, 2000)
+    }, 3000)
   }, [])
 
   return (

@@ -1003,7 +1003,7 @@
   background-color: white;
   border-bottom: 2px solid;
   text-align: center;
-  padding: 2px 4px 2px 4px;
+  padding: 4px;
   font-size: 15px;
   align-items: center;
   position: absolute;
@@ -1011,7 +1011,7 @@
   right: 0;
   margin: auto;
   z-index: 1;
-  width: 95%;
+  width: 100%;
 }
 
 .prompt p {
