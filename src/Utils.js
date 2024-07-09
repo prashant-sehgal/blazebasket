@@ -7,3 +7,7 @@ export function formatIndianPrice(priceString) {
   })
   return formatter.format(price)
 }
+
+export const CatchAsync = function (fun, runner) {
+  return fun.catch((error) => runner)
+}

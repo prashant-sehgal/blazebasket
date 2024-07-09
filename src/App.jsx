@@ -15,10 +15,11 @@ import Prompt from './components/Promp'
 
 function App() {
   const [loginInfo, setLoginInfo] = useState({ isLogedIn: false })
-  const [prompt, setPrompt] = useState({
-    type: 'error',
-    message: 'something',
-  })
+  const [prompt, setPrompt] = useState()
+
+  function showPrompt(type, message) {
+    setPrompt({ type, message })
+  }
 
   async function loadUserFromJWT() {
     const token = document.cookie.split('=')
@@ -52,7 +53,7 @@ function App() {
   return (
     <div className="App">
       {prompt ? (
-        <Prompt prompt={prompt} onClose={() => setPrompt(undefined)} />
+        <Prompt prompt={prompt} close={() => setPrompt(undefined)} />
       ) : (
         ''
       )}

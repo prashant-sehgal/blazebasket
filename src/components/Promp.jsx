@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-export default function Prompt({ prompt, onClose }) {
+export default function Prompt({ prompt, close }) {
   let color
 
   switch (prompt.type) {
@@ -22,7 +22,7 @@ export default function Prompt({ prompt, onClose }) {
 
   useEffect(function () {
     setTimeout(function () {
-      onClose()
+      close()
     }, 2000)
   }, [])
 
