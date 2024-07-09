@@ -997,3 +997,23 @@
 .secondary-button:hover {
   background-color: #e2e2e2;
 }
+
+/* prompt */
+.prompt {
+  background-color: white;
+  border-bottom: 2px solid;
+  text-align: center;
+  padding: 2px 4px 2px 4px;
+  font-size: 15px;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 1;
+  width: 95%;
+}
+
+.prompt p {
+  color: var(--black-text);
+}

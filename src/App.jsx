@@ -11,9 +11,14 @@ import Results from './pages/Results'
 import Product from './pages/Product'
 import User from './pages/User'
 import { getUserData } from './API'
+import Prompt from './components/Promp'
 
 function App() {
   const [loginInfo, setLoginInfo] = useState({ isLogedIn: false })
+  const [prompt, setPrompt] = useState({
+    type: 'error',
+    message: 'something',
+  })
 
   async function loadUserFromJWT() {
     const token = document.cookie.split('=')
@@ -46,6 +51,11 @@ function App() {
 
   return (
     <div className="App">
+      {prompt ? (
+        <Prompt prompt={prompt} onClose={() => setPrompt(undefined)} />
+      ) : (
+        ''
+      )}
       <Router>
         <Navbar loginInfo={loginInfo} />
         <div className="page">
