@@ -3,27 +3,31 @@ import CarouselSlider from '../components/Carousel-slider'
 import PrimaryButton from '../components/Buttons/PrimaryButton'
 import ProductsContainer from '../components/ProductsContainer'
 import Box from '../components/Box'
-import SecondaryButton from '../components/Buttons/SecondaryButton'
 import QuantityEditor from '../components/QuantityEditor'
-import UserLogo from '../components/UserLogo'
-import {
-  findProductById,
-  getProductImage,
-  getProductReviews,
-  getUserImage,
-} from '../API'
+import { findProductById, getProductImage, getProductReviews } from '../API'
 import { formatIndianPrice } from '../Utils'
 import Review from '../components/Review'
 import RatingsDisplay from '../components/RatingsDisplay'
 import ReviewForm from '../components/ReviewForm'
+import { NavLink } from 'react-router-dom'
 
-export default function Product() {
+export default function Product({ loginInfo, addItemToCart }) {
   const [product, setProduct] = useState()
   const [reviews, setReviews] = useState([])
 
   const [quantity, setQuantity] = useState(1)
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
   const descContainer = useRef()
+
+  function updateQuantity(amount) {
+    if (quantity + amount < 1) return
+    setQuantity(quantity + amount)
+  }
+
+  async function reloadReviews() {
+    const reviewsData = await getProductReviews(product._id)
+    if (reviewsData) setReviews(reviewsData.reverse())
+  }
 
   useEffect(function () {
     const urlParams = new URLSearchParams(window.location.search)
@@ -35,7 +39,7 @@ export default function Product() {
       const reviewsData = await getProductReviews(productData._id)
 
       if (productData) setProduct(productData)
-      if (reviewsData) setReviews(reviewsData)
+      if (reviewsData) setReviews(reviewsData.reverse())
     }
 
     loadData()
@@ -82,6 +86,7 @@ export default function Product() {
       ) : (
         <>
           <div className="product-container">
+            <p>{loginInfo.isLogedIn}</p>
             <div className="product-image-carousel">
               <CarouselSlider
                 size={carouselSize}
@@ -102,12 +107,23 @@ export default function Product() {
               <QuantityEditor
                 style={{ marginTop: 20 }}
                 value={quantity}
-                setValue={setQuantity}
+                setValue={updateQuantity}
                 size={100}
               />
               <div className="product-price-container">
                 <p>{formatIndianPrice(`${product.price}`)}</p>
-                <PrimaryButton size={200}>ADD TO CART</PrimaryButton>
+                {loginInfo.isLogedIn ? (
+                  <PrimaryButton
+                    size={200}
+                    onPress={() => addItemToCart({ product, quantity })}
+                  >
+                    ADD TO CART
+                  </PrimaryButton>
+                ) : (
+                  <NavLink to="/login">
+                    <PrimaryButton size={200}>ADD TO CART</PrimaryButton>
+                  </NavLink>
+                )}
               </div>
             </div>
           </div>
@@ -126,7 +142,15 @@ export default function Product() {
           />
 
           <Box title="REVIEW SECTION" style={{ marginTop: 10 }}>
-            {/* <ReviewForm /> */}
+            {loginInfo.isLogedIn ? (
+              <ReviewForm
+                loginInfo={loginInfo}
+                productId={product._id}
+                onSubmit={() => reloadReviews()}
+              />
+            ) : (
+              ''
+            )}
             <div className="reviews">
               {reviews.length > 0 ? (
                 reviews.map((review) => (
@@ -135,6 +159,7 @@ export default function Product() {
                     ratings={review.rating}
                     message={review.thought}
                     img={review.user.image}
+                    key={review._id}
                   />
                 ))
               ) : (

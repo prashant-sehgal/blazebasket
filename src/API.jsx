@@ -11,6 +11,16 @@ const categories = [
   'headphone',
 ]
 
+export async function createNewReview(product, thought, rating, token) {
+  const response = await axios.post(`${host}/reviews/myReviews`, {
+    product,
+    thought,
+    rating,
+    jwt: token,
+  })
+  return response.data
+}
+
 export async function signup(name, email, password) {
   try {
     const response = await axios.post(`${host}/users/signup`, {

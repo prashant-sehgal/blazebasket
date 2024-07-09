@@ -9,7 +9,7 @@ import Links from './Links'
 import { getUserImage } from '../API'
 import UserIcon from './UserIcon'
 
-export default function Navbar({ loginInfo }) {
+export default function Navbar({ loginInfo, cartLength }) {
   return (
     <div className="navbar">
       <div className="header">
@@ -20,7 +20,7 @@ export default function Navbar({ loginInfo }) {
         <Links>
           {loginInfo.isLogedIn ? (
             <>
-              <CartLink amount={0} />
+              <CartLink amount={cartLength} />
 
               <NavLink to="/user">
                 <UserIcon img={getUserImage(loginInfo.user.image)} size={40} />

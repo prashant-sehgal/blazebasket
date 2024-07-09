@@ -1,9 +1,26 @@
 import React, { useState } from 'react'
 import QuantityEditor from '../components/QuantityEditor'
 import PrimaryButton from '../components/Buttons/PrimaryButton'
+import { getProductImage } from '../API'
+import { formatIndianPrice } from '../Utils'
+import { NavLink } from 'react-router-dom'
 
-export default function Cart() {
-  const [quantity, setQuantity] = useState(1)
+export default function Cart({ cart, updateCart }) {
+  function changeQuantity(index, value) {
+    let newCart = Object.create(cart)
+
+    if (newCart[index].quantity + value < 1) return
+
+    newCart[index].quantity += value
+    updateCart(newCart)
+  }
+
+  function removeProductFromCart(index) {
+    let newCart = Object.create(cart)
+    newCart.splice(index, 1)
+    updateCart(newCart)
+  }
+
   return (
     <div className="cart">
       <div className="title">My Shopping Bag</div>
@@ -15,90 +32,51 @@ export default function Cart() {
             <ProductPrice>Price</ProductPrice>
             <ProductPrice>Total</ProductPrice>
           </Row>
-          <Row>
-            <ProductTitle>
-              <ProductCell
-                title="Samsung Galaxy S24 Ultra 5G Pure Titanium (12GB, 256GB)"
-                img="sample-product.webp"
-                removeProduct={() => console.log('cliked')}
-              />
-            </ProductTitle>
-            <ProductQuantity>
-              <QuantityEditor
-                value={quantity}
-                setValue={setQuantity}
-                style={{ width: 100 }}
-                fontSize={15}
-              />
-            </ProductQuantity>
-            <ProductPrice>Rs. 1,29,900</ProductPrice>
-            <ProductPrice>Rs. 1,29,900</ProductPrice>
-          </Row>
-          <Row>
-            <ProductTitle>
-              <ProductCell
-                title="Samsung Galaxy S24 Ultra 5G Pure Titanium (12GB, 256GB)"
-                img="sample-product.webp"
-                removeProduct={() => console.log('cliked')}
-              />
-            </ProductTitle>
-            <ProductQuantity>
-              <QuantityEditor
-                value={quantity}
-                setValue={setQuantity}
-                style={{ width: 100 }}
-                fontSize={15}
-              />
-            </ProductQuantity>
-            <ProductPrice>Rs. 1,29,900</ProductPrice>
-            <ProductPrice>Rs. 1,29,900</ProductPrice>
-          </Row>
-          <Row>
-            <ProductTitle>
-              <ProductCell
-                title="Samsung Galaxy S24 Ultra 5G Pure Titanium (12GB, 256GB)"
-                img="sample-product.webp"
-                removeProduct={() => console.log('cliked')}
-              />
-            </ProductTitle>
-            <ProductQuantity>
-              <QuantityEditor
-                value={quantity}
-                setValue={setQuantity}
-                style={{ width: 100 }}
-                fontSize={15}
-              />
-            </ProductQuantity>
-            <ProductPrice>Rs. 1,29,900</ProductPrice>
-            <ProductPrice>Rs. 1,29,900</ProductPrice>
-          </Row>
-          <Row>
-            <ProductTitle>
-              <ProductCell
-                title="Samsung Galaxy S24 Ultra 5G Pure Titanium (12GB, 256GB)"
-                img="sample-product.webp"
-                removeProduct={() => console.log('cliked')}
-              />
-            </ProductTitle>
-            <ProductQuantity>
-              <QuantityEditor
-                value={quantity}
-                setValue={setQuantity}
-                style={{ width: 100 }}
-                fontSize={15}
-              />
-            </ProductQuantity>
-            <ProductPrice>Rs. 1,29,900</ProductPrice>
-            <ProductPrice>Rs. 1,29,900</ProductPrice>
-          </Row>
+
+          {cart
+            ? cart.map((item, i) => (
+                <Row key={`${item.product._id + Math.random()}`}>
+                  <ProductTitle>
+                    <ProductCell
+                      title={item.product.title}
+                      id={item.product._id}
+                      img={getProductImage(item.product.images[0])}
+                      removeProduct={() => removeProductFromCart(i)}
+                    />
+                  </ProductTitle>
+                  <ProductQuantity>
+                    <QuantityEditor
+                      value={item.quantity}
+                      style={{ width: 100 }}
+                      setValue={(amount) => changeQuantity(i, amount)}
+                      fontSize={15}
+                    />
+                  </ProductQuantity>
+                  <ProductPrice>
+                    {formatIndianPrice(item.product.price.toString())}
+                  </ProductPrice>
+                  <ProductPrice>
+                    {formatIndianPrice(
+                      (item.quantity * item.product.price).toString()
+                    )}
+                  </ProductPrice>
+                </Row>
+              ))
+            : ''}
         </div>
-        <Summary />
+        <Summary cart={cart} />
       </div>
     </div>
   )
 }
 
-function Summary() {
+function Summary({ cart }) {
+  let subtotal = 0
+
+  cart.forEach((item) => {
+    subtotal += item.quantity * item.product.price
+  })
+
   return (
     <div className="summary">
       <Section>
@@ -108,12 +86,15 @@ function Summary() {
         <PromoCode />
       </Section>
       <Section>
-        <Cost title="subtotal" amount="Rs. 1,29,900" />
-        <Cost title="shipping" amount="Rs. 0" />
-        <Cost title="gst" amount="Rs. 0" />
+        <Cost title="subtotal" amount={formatIndianPrice(`${subtotal}`)} />
+        <Cost title="shipping" amount={formatIndianPrice(`${0}`)} />
+        <Cost title="gst" amount={formatIndianPrice(`${subtotal * 0.18}`)} />
       </Section>
       <Section>
-        <Cost title="estimated total" amount="Rs. 12,29,900" />
+        <Cost
+          title="estimated total"
+          amount={formatIndianPrice(`${subtotal + subtotal * 0.18}`)}
+        />
       </Section>
       <Section>
         <PrimaryButton style={{ width: '100%', height: 50 }}>
@@ -167,14 +148,16 @@ function ProductTotal({ children }) {
   return <div className="col product-total-col">{children}</div>
 }
 
-function ProductCell({ img, title, removeProduct }) {
+function ProductCell({ img, title, id, removeProduct }) {
   return (
     <div className="product-cell">
       <div className="img">
-        <img src={`/${img}`} alt={img} />
+        <img src={img} alt={img} />
       </div>
       <div className="details">
-        <p>{title}</p>
+        <NavLink to={`/product?id=${id}`}>
+          <p>{title}</p>
+        </NavLink>
         <button onClick={removeProduct}>Remove</button>
       </div>
     </div>

@@ -15,7 +15,31 @@ import Prompt from './components/Promp'
 
 function App() {
   const [loginInfo, setLoginInfo] = useState({ isLogedIn: false })
+  const [cart, setCart] = useState(loadCart())
   const [prompt, setPrompt] = useState()
+
+  function loadCart() {
+    const cartJSONString = localStorage.cart
+    if (!cartJSONString) return []
+
+    const cart = JSON.parse(cartJSONString)
+    return cart
+  }
+
+  function updateCart(newCart) {
+    setCart((current) => {
+      localStorage.setItem('cart', JSON.stringify([...newCart]))
+      return [...newCart]
+    })
+  }
+
+  function addItemToCart(item) {
+    if (cart.length === 5) return
+    setCart((current) => {
+      localStorage.setItem('cart', JSON.stringify([...current, item]))
+      return [...current, item]
+    })
+  }
 
   function showPrompt(type, message) {
     setPrompt({ type, message })
@@ -35,6 +59,7 @@ function App() {
     setLoginInfo({
       isLogedIn: true,
       user,
+      jwt: token[1],
     })
   }
 
@@ -58,7 +83,7 @@ function App() {
         ''
       )}
       <Router>
-        <Navbar loginInfo={loginInfo} />
+        <Navbar loginInfo={loginInfo} cartLength={cart.length} />
         <div className="page">
           <Routes>
             <Route path="/" element={<Home loginInfo={loginInfo} />} />
@@ -69,7 +94,10 @@ function App() {
                 <Signup shopPrompt={showPrompt} setLogin={setLoginJWT} />
               }
             />
-            <Route path="/cart" element={<Cart />} />
+            <Route
+              path="/cart"
+              element={<Cart cart={cart} updateCart={updateCart} />}
+            />
             <Route path="/user" element={<User user={loginInfo.user} />} />
             <Route
               path="/smartphones"
@@ -89,7 +117,12 @@ function App() {
               path="/search/:query"
               element={<Results category="search" />}
             />
-            <Route path="/product" element={<Product />} />
+            <Route
+              path="/product"
+              element={
+                <Product loginInfo={loginInfo} addItemToCart={addItemToCart} />
+              }
+            />
           </Routes>
         </div>
       </Router>
