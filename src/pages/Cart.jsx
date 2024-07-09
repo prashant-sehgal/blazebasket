@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import QuantityEditor from '../components/QuantityEditor'
 import PrimaryButton from '../components/Buttons/PrimaryButton'
 import { getProductImage } from '../API'
@@ -142,10 +142,6 @@ function ProductQuantity({ children }) {
 
 function ProductPrice({ children }) {
   return <div className="col product-price-col">{children}</div>
-}
-
-function ProductTotal({ children }) {
-  return <div className="col product-total-col">{children}</div>
 }
 
 function ProductCell({ img, title, id, removeProduct }) {
