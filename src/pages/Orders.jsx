@@ -9,7 +9,7 @@ export default function Orders({ loginInfo }) {
   async function orderCompleted(id) {
     try {
       const response = await CompleteMyOrder(id, loginInfo.jwt)
-      loadOrders()
+      if (response.data.status === 'success') loadOrders()
     } catch (error) {}
   }
   async function loadOrders() {
