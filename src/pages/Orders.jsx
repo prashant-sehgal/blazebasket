@@ -1,10 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import { getMyOrders, getProductImage } from '../API'
+import { CompleteMyOrder, getMyOrders, getProductImage } from '../API'
 import { formatIndianPrice } from '../Utils'
 import { NavLink } from 'react-router-dom'
 
 export default function Orders({ loginInfo }) {
   const [orders, setOrders] = useState()
+
+  async function orderCompleted(id) {
+    try {
+      const response = await CompleteMyOrder(id, loginInfo.jwt)
+      loadOrders()
+    } catch (error) {}
+  }
+  async function loadOrders() {
+    try {
+      const response = await getMyOrders(loginInfo.jwt)
+      const orderWithPaymentsCompleted = response.data.data.documents.filter(
+        (order) => order.paymentStatus === 'completed'
+      )
+
+      setOrders(orderWithPaymentsCompleted.reverse())
+    } catch (error) {}
+  }
 
   useEffect(
     function () {
@@ -19,7 +36,6 @@ export default function Orders({ loginInfo }) {
           setOrders(orderWithPaymentsCompleted.reverse())
         } catch (error) {}
       }
-
       if (loginInfo.isLogedIn) loadOrders()
     },
     [loginInfo]
@@ -31,7 +47,13 @@ export default function Orders({ loginInfo }) {
       <div className="container">
         {' '}
         {orders ? (
-          orders.map((order) => <OrderPreview order={order} key={order._id} />)
+          orders.map((order) => (
+            <OrderPreview
+              order={order}
+              key={order._id}
+              onCompleteOrder={orderCompleted}
+            />
+          ))
         ) : (
           <p>loading</p>
         )}
@@ -40,7 +62,7 @@ export default function Orders({ loginInfo }) {
   )
 }
 
-function OrderPreview({ order }) {
+function OrderPreview({ order, onCompleteOrder }) {
   return (
     <div className="order-preview">
       <div className="header">
@@ -49,7 +71,10 @@ function OrderPreview({ order }) {
 
       <div className="main">
         {order.products.map((item) => (
-          <NavLink to={`/product?id=${item.product._id}`}>
+          <NavLink
+            to={`/product?id=${item.product._id}`}
+            key={item.product._id}
+          >
             <ProudctItemPreview item={item} />
           </NavLink>
         ))}
@@ -80,7 +105,9 @@ function OrderPreview({ order }) {
             <>
               <span className="text-red font-bold-600">Pending</span>
               <div className="btn">
-                <button>I Recieved My Order</button>
+                <button onClick={() => onCompleteOrder(order._id)}>
+                  I Recieved My Order
+                </button>
               </div>
             </>
           )}

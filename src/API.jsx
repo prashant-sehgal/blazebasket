@@ -11,6 +11,13 @@ const categories = [
   'headphone',
 ]
 
+export async function CompleteMyOrder(id, token) {
+  const response = await axios.post(`${host}/orders/completeMyOrder/${id}`, {
+    jwt: token,
+  })
+  return response
+}
+
 export async function getMyOrders(jwt) {
   const response = await axios.post(`${host}/orders/getMyOrders`, { jwt })
   return response
