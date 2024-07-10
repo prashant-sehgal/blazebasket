@@ -12,6 +12,7 @@ import Product from './pages/Product'
 import User from './pages/User'
 import { getUserData } from './API'
 import Prompt from './components/Promp'
+import Orders from './pages/Orders'
 
 function App() {
   const [loginInfo, setLoginInfo] = useState({ isLogedIn: false })
@@ -97,7 +98,13 @@ function App() {
             />
             <Route
               path="/cart"
-              element={<Cart cart={cart} updateCart={updateCart} />}
+              element={
+                <Cart
+                  cart={cart}
+                  updateCart={updateCart}
+                  loginInfo={loginInfo}
+                />
+              }
             />
             <Route path="/user" element={<User user={loginInfo.user} />} />
             <Route
@@ -124,6 +131,7 @@ function App() {
                 <Product loginInfo={loginInfo} addItemToCart={addItemToCart} />
               }
             />
+            <Route path="/orders" element={<Orders loginInfo={loginInfo} />} />
           </Routes>
         </div>
       </Router>

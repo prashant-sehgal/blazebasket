@@ -1,11 +1,11 @@
 import React from 'react'
 import QuantityEditor from '../components/QuantityEditor'
 import PrimaryButton from '../components/Buttons/PrimaryButton'
-import { getProductImage } from '../API'
+import { checkout, getProductImage } from '../API'
 import { formatIndianPrice } from '../Utils'
 import { NavLink } from 'react-router-dom'
 
-export default function Cart({ cart, updateCart }) {
+export default function Cart({ cart, updateCart, loginInfo }) {
   function changeQuantity(index, value) {
     let newCart = Object.create(cart)
 
@@ -21,9 +21,24 @@ export default function Cart({ cart, updateCart }) {
     updateCart(newCart)
   }
 
+  async function createCheckoutSession() {
+    try {
+      if (!cart.length) return
+
+      const products = cart.map((item) => {
+        return { id: item.product._id, quantity: item.quantity }
+      })
+
+      const response = await checkout(products, loginInfo.jwt)
+      window.location.href = response.data.session.url
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
   return (
     <div className="cart">
-      <div className="title">My Shopping Bag</div>
+      <div className="page-title">My Shopping Bag</div>
       <div className="container">
         <div className="products-list">
           <Row type="title">
@@ -64,13 +79,13 @@ export default function Cart({ cart, updateCart }) {
               ))
             : ''}
         </div>
-        <Summary cart={cart} />
+        <Summary cart={cart} onCheckout={createCheckoutSession} />
       </div>
     </div>
   )
 }
 
-function Summary({ cart }) {
+function Summary({ cart, onCheckout }) {
   let subtotal = 0
 
   cart.forEach((item) => {
@@ -88,16 +103,19 @@ function Summary({ cart }) {
       <Section>
         <Cost title="subtotal" amount={formatIndianPrice(`${subtotal}`)} />
         <Cost title="shipping" amount={formatIndianPrice(`${0}`)} />
-        <Cost title="gst" amount={formatIndianPrice(`${subtotal * 0.18}`)} />
+        <Cost title="gst" amount="Included" />
       </Section>
       <Section>
         <Cost
           title="estimated total"
-          amount={formatIndianPrice(`${subtotal + subtotal * 0.18}`)}
+          amount={formatIndianPrice(`${subtotal}`)}
         />
       </Section>
       <Section>
-        <PrimaryButton style={{ width: '100%', height: 50 }}>
+        <PrimaryButton
+          style={{ width: '100%', height: 50 }}
+          onPress={onCheckout}
+        >
           CHECKOUT
         </PrimaryButton>
       </Section>

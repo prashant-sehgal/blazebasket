@@ -610,7 +610,7 @@
 .cart {
   margin: 10px;
 }
-.cart .title {
+.page-title {
   font-size: 20px;
   text-transform: uppercase;
   font-weight: 500;
@@ -1073,4 +1073,128 @@
   justify-content: center;
   background-color: white;
   /* opacity: 0.8; */
+}
+
+/* orders page */
+.orders {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.orders .container {
+  overflow-x: scroll;
+  padding: 4px;
+}
+
+.order-preview {
+  width: 800px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 4px 1px black;
+  position: relative;
+  padding: 4px;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.order-preview .header {
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid black;
+}
+
+.order-preview .footer {
+  display: flex;
+  font-size: 12px;
+  justify-content: space-between;
+  padding: 4px;
+}
+
+.order-preview .payment-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.order-preview .footer .btn {
+  /* background-color: #198754; */
+  margin-top: 10px;
+}
+
+.order-preview .footer .btn button {
+  background: var(--custom-success-green);
+  border: 1px solid #105f3a;
+  color: white;
+  cursor: pointer;
+  padding: 1px;
+  width: 100%;
+}
+
+.order-preview .footer .btn button:hover {
+  border: 1px solid var(--custom-success-green);
+  background: #105f3a;
+}
+
+.text-secondary-blue {
+  color: var(--secondary-color);
+  /* font-weight: 400; */
+}
+
+.text-warn {
+  color: var(--custom-warn);
+}
+
+.text-success {
+  color: var(--custom-success-green);
+}
+
+.text-red {
+  color: var(--custom-red);
+}
+
+.font-bold-600 {
+  font-weight: 600;
+}
+
+.order-preview .main {
+  margin: 20px 0px 20px 0px;
+}
+
+/* product item preview */
+.product-item-preview {
+  display: flex;
+  padding: 4px;
+  border-bottom: 1px solid grey;
+}
+
+.product-item-preview .img {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.product-item-preview .img img {
+  width: 40px;
+}
+
+.product-item-preview .title {
+  font-size: 12px;
+  text-align: justify;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid gray;
+  padding: 4px;
+  width: 600px;
+}
+
+.product-item-preview .quantity {
+  border-left: 1px solid gray;
+  font-size: 12px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

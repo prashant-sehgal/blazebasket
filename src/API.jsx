@@ -11,6 +11,19 @@ const categories = [
   'headphone',
 ]
 
+export async function getMyOrders(jwt) {
+  const response = await axios.post(`${host}/orders/getMyOrders`, { jwt })
+  return response
+}
+
+export async function checkout(products, token) {
+  const response = await axios.post(`${host}/orders/checkout`, {
+    jwt: token,
+    products,
+  })
+  return response
+}
+
 export async function createNewReview(product, thought, rating, token) {
   const response = await axios.post(`${host}/reviews/myReviews`, {
     product,
