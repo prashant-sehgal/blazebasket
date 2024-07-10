@@ -39,6 +39,7 @@ function App() {
       localStorage.setItem('cart', JSON.stringify([...current, item]))
       return [...current, item]
     })
+    window.location.href = '/cart'
   }
 
   function showPrompt(type, message) {
