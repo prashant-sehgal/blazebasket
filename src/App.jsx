@@ -106,7 +106,7 @@ function App() {
                 />
               }
             />
-            <Route path="/user" element={<User user={loginInfo.user} />} />
+            <Route path="/user" element={<User loginInfo={loginInfo} />} />
             <Route
               path="/smartphones"
               element={<Results category="smartphones" />}

@@ -9,6 +9,7 @@ import { formatIndianPrice } from '../Utils'
 import Review from '../components/Review'
 import RatingsDisplay from '../components/RatingsDisplay'
 import ReviewForm from '../components/ReviewForm'
+import AppLoading from '../components/AppLoading'
 
 export default function Product({ loginInfo, addItemToCart }) {
   const [product, setProduct] = useState()
@@ -41,7 +42,7 @@ export default function Product({ loginInfo, addItemToCart }) {
       if (reviewsData) setReviews(reviewsData.reverse())
     }
 
-    loadData()
+    if (productId) loadData()
   }, [])
 
   useEffect(
@@ -81,7 +82,7 @@ export default function Product({ loginInfo, addItemToCart }) {
   return (
     <div className="product">
       {!product ? (
-        'loading'
+        <AppLoading />
       ) : (
         <>
           <div className="product-container">

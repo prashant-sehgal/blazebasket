@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ProductOverview from '../components/ProductPreview'
 import { categoryPicks, searchProducts } from '../API'
 import { useParams } from 'react-router-dom'
+import AppLoading from '../components/AppLoading'
 
 export default function Results({ category }) {
   const [products, setProducts] = useState('')
@@ -40,19 +41,29 @@ export default function Results({ category }) {
     }
   }, [])
 
-  return (
-    <div className="results">
-      <div className="products">
-        {products.length > 0 && products !== 'none' ? (
-          products.map((product) => (
-            <ProductOverview product={product} key={product._id} />
-          ))
-        ) : products === 'none' ? (
-          <p>No Product Found</p>
-        ) : (
-          <p>Loading</p>
-        )}
+  if (!products) {
+    return <AppLoading />
+  } else {
+    return (
+      <div className="results">
+        <div className="products">
+          {products !== 'none' ? (
+            products.map((product) => (
+              <ProductOverview product={product} key={product._id} />
+            ))
+          ) : (
+            <div
+              style={{
+                textAlign: 'center',
+                width: '100%',
+                margin: '20px',
+              }}
+            >
+              <p>No Product Found</p>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
