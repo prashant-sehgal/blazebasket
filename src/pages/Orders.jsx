@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { CompleteMyOrder, getMyOrders, getProductImage } from '../API'
 import { formatIndianPrice } from '../Utils'
 import { NavLink } from 'react-router-dom'
+import AppLoading from '../components/AppLoading'
 
 export default function Orders({ loginInfo }) {
   const [orders, setOrders] = useState()
@@ -41,12 +42,13 @@ export default function Orders({ loginInfo }) {
     [loginInfo]
   )
 
+  if (!orders) return <AppLoading />
+
   return (
     <div className="orders">
       <div className="page-title">My Orders</div>
       <div className="container">
-        {' '}
-        {orders ? (
+        {orders.length ? (
           orders.map((order) => (
             <OrderPreview
               order={order}
@@ -55,7 +57,7 @@ export default function Orders({ loginInfo }) {
             />
           ))
         ) : (
-          <p>loading</p>
+          <p>No Orders Yet</p>
         )}
       </div>
     </div>

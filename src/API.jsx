@@ -11,6 +11,16 @@ const categories = [
   'headphone',
 ]
 
+export async function updateProfilePicture(formData, token) {
+  const response = await axios.post(`${host}/users/updateMe`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  return response
+}
+
 export async function CompleteMyOrder(id, token) {
   const response = await axios.post(`${host}/orders/completeMyOrder/${id}`, {
     jwt: token,

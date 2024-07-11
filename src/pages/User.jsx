@@ -1,20 +1,27 @@
 import React, { useState } from 'react'
-import { getUserImage, login } from '../API'
+import { getUserImage, updateProfilePicture } from '../API'
 import { NavLink } from 'react-router-dom'
-import Custom2Button from '../components/Buttons/Custom2Button'
 
 export default function User({ loginInfo }) {
   const [img, setImg] = useState()
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0]
-    if (file) {
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        setImg(reader.result)
+  const handleImageUpload = async (event) => {
+    try {
+      const file = event.target.files[0]
+      if (file) {
+        const reader = new FileReader()
+        reader.onloadend = () => {
+          setImg(reader.result)
+        }
+        reader.readAsDataURL(file)
       }
-      reader.readAsDataURL(file)
-    }
+
+      const formData = new FormData()
+      formData.append('name', loginInfo.user.name)
+      formData.append('image', file)
+
+      await updateProfilePicture(formData, loginInfo.jwt)
+    } catch (error) {}
   }
 
   function deleteCookie(cookieName) {
@@ -68,5 +75,4 @@ export default function User({ loginInfo }) {
       </div>
     )
   }
-  window.location.href = '/login'
 }
