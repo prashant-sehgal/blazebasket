@@ -9,7 +9,6 @@ import { formatIndianPrice } from '../Utils'
 import Review from '../components/Review'
 import RatingsDisplay from '../components/RatingsDisplay'
 import ReviewForm from '../components/ReviewForm'
-import { NavLink } from 'react-router-dom'
 
 export default function Product({ loginInfo, addItemToCart }) {
   const [product, setProduct] = useState()
