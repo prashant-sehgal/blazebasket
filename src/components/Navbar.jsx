@@ -18,10 +18,9 @@ export default function Navbar({ loginInfo, cartLength }) {
         </NavLink>
         <SearchBar />
         <Links>
+          <CartLink amount={cartLength} />
           {loginInfo.isLogedIn ? (
             <>
-              <CartLink amount={cartLength} />
-
               <NavLink to="/user">
                 <UserIcon img={getUserImage(loginInfo.user.image)} size={40} />
               </NavLink>

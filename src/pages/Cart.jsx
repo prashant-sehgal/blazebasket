@@ -79,13 +79,17 @@ export default function Cart({ cart, updateCart, loginInfo }) {
               ))
             : ''}
         </div>
-        <Summary cart={cart} onCheckout={createCheckoutSession} />
+        <Summary
+          cart={cart}
+          onCheckout={createCheckoutSession}
+          loginInfo={loginInfo}
+        />
       </div>
     </div>
   )
 }
 
-function Summary({ cart, onCheckout }) {
+function Summary({ cart, onCheckout, loginInfo }) {
   let subtotal = 0
 
   cart.forEach((item) => {
@@ -112,12 +116,20 @@ function Summary({ cart, onCheckout }) {
         />
       </Section>
       <Section>
-        <PrimaryButton
-          style={{ width: '100%', height: 50 }}
-          onPress={onCheckout}
-        >
-          CHECKOUT
-        </PrimaryButton>
+        {loginInfo.isLogedIn ? (
+          <PrimaryButton
+            style={{ width: '100%', height: 50 }}
+            onPress={onCheckout}
+          >
+            CHECKOUT
+          </PrimaryButton>
+        ) : (
+          <NavLink to="/login">
+            <PrimaryButton style={{ width: '100%', height: 50 }} s>
+              LOGIN TO CHECKOUT
+            </PrimaryButton>
+          </NavLink>
+        )}
       </Section>
     </div>
   )

@@ -112,18 +112,12 @@ export default function Product({ loginInfo, addItemToCart }) {
               />
               <div className="product-price-container">
                 <p>{formatIndianPrice(`${product.price}`)}</p>
-                {loginInfo.isLogedIn ? (
-                  <PrimaryButton
-                    size={200}
-                    onPress={() => addItemToCart({ product, quantity })}
-                  >
-                    ADD TO CART
-                  </PrimaryButton>
-                ) : (
-                  <NavLink to="/login">
-                    <PrimaryButton size={200}>ADD TO CART</PrimaryButton>
-                  </NavLink>
-                )}
+                <PrimaryButton
+                  size={200}
+                  onPress={() => addItemToCart({ product, quantity })}
+                >
+                  ADD TO CART
+                </PrimaryButton>
               </div>
             </div>
           </div>
