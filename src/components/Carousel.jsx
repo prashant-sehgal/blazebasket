@@ -3,14 +3,14 @@ import React, { useEffect, useRef, useState } from 'react'
 export default function Carousel({ images }) {
   const [activeSlide, setActiveSlide] = useState(0)
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      forward()
-    }, 5000) // 5000 milliseconds = 5 seconds
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     forward()
+  //   }, 5000) // 5000 milliseconds = 5 seconds
 
-    // Clear interval on component unmount
-    return () => clearInterval(intervalId)
-  }, [])
+  //   // Clear interval on component unmount
+  //   return () => clearInterval(intervalId)
+  // }, [])
 
   function reverse() {
     setActiveSlide((value) => {
