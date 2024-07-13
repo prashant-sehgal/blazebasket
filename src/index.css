@@ -589,8 +589,14 @@
 }
 
 .review .review-profile-img {
-  width: 25px;
+  width: 30px;
+  border-radius: 15px;
+  overflow: hidden;
   margin-right: 10px;
+}
+
+.review .review-profile-img img {
+  width: 100%;
 }
 
 .review .user {

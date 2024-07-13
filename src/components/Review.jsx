@@ -6,11 +6,9 @@ export default function Review({ user, ratings, message, img }) {
     <div className="review">
       <div className="user">
         <div>
-          <img
-            src={getUserImage(img)}
-            alt={getUserImage(img)}
-            className="review-profile-img"
-          />
+          <div className="review-profile-img">
+            <img src={getUserImage(img)} alt={getUserImage(img)} className="" />
+          </div>
           {user}
         </div>
         <RatingsDisplay
