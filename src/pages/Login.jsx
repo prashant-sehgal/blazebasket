@@ -5,8 +5,8 @@ import { login } from '../API'
 import decrypt from '../decrypt'
 
 export default function Login({ setLogin }) {
-  const [email, setEmail] = useState('admin@bb.com')
-  const [password, setPassword] = useState('pass1234')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   async function onSubmitLoginForm(event) {
     event.preventDefault()
