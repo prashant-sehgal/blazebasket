@@ -65,7 +65,3 @@ npm run start
 </li>
 
 </ul>
-
-## License
-
-**Free & OpenSource Software**
